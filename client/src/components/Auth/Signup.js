@@ -25,6 +25,8 @@ class Signup extends React.Component {
     handleSubmit = async (e, signupUser) => {
         e.preventDefault();
         const data = await signupUser();
+        localStorage.setItem('token', data.data.signupUser.token);
+
         this.clearState();
     }
 

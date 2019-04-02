@@ -23,8 +23,9 @@ class Login extends React.Component {
     handleSubmit = async (e, signinUser) => {
         e.preventDefault();
         const data = await signinUser();
-        this.clearState();
         console.log('data Login.js', data);
+        localStorage.setItem('token', data.data.signinUser.token);
+        this.clearState();
     }
 
     clearState = () => {
