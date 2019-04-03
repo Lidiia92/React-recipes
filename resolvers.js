@@ -19,7 +19,7 @@ exports.resolvers = {
             }
 
             const user = await User.findOne({ username: currentUser.username }).populate({ path: 'favorites', model: 'Recipe'});
-            return User;
+            return user;
 
         }
     },

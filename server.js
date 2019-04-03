@@ -42,6 +42,7 @@ app.use( async (req, res, next) => {
         try{
             const currentUser = await jwt.verify(token, process.env.SECRET);
             req.currentUser = currentUser;
+            console.log(req.currentUser);
         } catch(err) {
             console.error(err);
         }
@@ -56,12 +57,12 @@ app.use('/graphiql', graphiqlExpress({endpointURL: 'graphql'}));
 //Connect schemas with GraphQL
 app.use('/graphql', bodyParser.json(), 
 
-graphqlExpress(({currentUser}) => ({
+graphqlExpress((req) => ({
     schema: schema,
     context: {
         Recipe,
         User,
-        currentUser
+        currentUser: req.currentUser
     }
 }))
 
