@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import {Mutation} from 'react-apollo';
 import {SIGNUP_USER} from '../../queries/index';
 
@@ -26,8 +27,10 @@ class Signup extends React.Component {
         e.preventDefault();
         const data = await signupUser();
         localStorage.setItem('token', data.data.signupUser.token);
+        await this.props.refetch();
 
         this.clearState();
+        this.props.history.push('/')
     }
 
     clearState = () => {
@@ -69,4 +72,4 @@ class Signup extends React.Component {
     }
 }
 
-export default Signup; 
+export default withRouter(Signup); 

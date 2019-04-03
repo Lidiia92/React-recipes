@@ -5,11 +5,11 @@ import {GET_CURRENT_USER} from '../queries/index';
 
 const withSession = Component => props => (
     <Query query={GET_CURRENT_USER}>
-    {({ data, loading }) => {
+    {({ data, loading, refetch }) => {
       if (loading) return null;
       console.log(data);
       return (
-        <Component {...props} session={data} />
+        <Component {...props} session={data} refetch={refetch}/>
       );
      }}
     </Query>

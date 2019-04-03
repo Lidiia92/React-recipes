@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import {Mutation} from 'react-apollo';
 import {SIGNIN_USER} from '../../queries/index';
 
@@ -25,7 +26,10 @@ class Login extends React.Component {
         const data = await signinUser();
         console.log('data Login.js', data);
         localStorage.setItem('token', data.data.signinUser.token);
+        await this.props.refetch();
+
         this.clearState();
+        this.props.history.push('/')
     }
 
     clearState = () => {
@@ -65,4 +69,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login; 
+export default withRouter(Login); 
