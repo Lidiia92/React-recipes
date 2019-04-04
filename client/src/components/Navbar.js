@@ -2,19 +2,20 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 const Navbar = (props) => {
-    console.log('navbar', props);
+    console.log(props);
 
     return(
         <nav>
-            <NavbarAuth />
+            {props.session && props.session.getCurrentUser ? <NavbarAuth session={props.session}/> : <NavbarUnAuth />}
         </nav>
     );
 
 }
 
 
-const NavbarAuth = () => (
+const NavbarAuth = (props) => (
 
+    <>
     <ul>
           <li><NavLink exact to="/">Home</NavLink></li>
           <li><NavLink exact to="/search">Search</NavLink></li>
@@ -22,7 +23,8 @@ const NavbarAuth = () => (
           <li><NavLink exact to="/profile">Profile</NavLink></li>
           <button>Signout</button>
     </ul>
-  
+    <h5>Welcome, {props.session.getCurrentUser.username}</h5>
+   </>
 );
 
 const NavbarUnAuth = () => (
