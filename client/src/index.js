@@ -8,6 +8,8 @@ import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import Navbar from './components/Navbar';
 import Search from './components/Recipe/Search';
+import AddRecipe from './components/Recipe/AddRecipe';
+import Profile from './components/Profile/Profile';
 import withSession from './components/withSession';
 
 import ApolloClient from 'apollo-boost';
@@ -41,6 +43,8 @@ const Root = ({refetch}) => (
             <Route path="/login" render={() => <Login refetch={refetch}/>} />
             <Route path="/signup" render={() => <Signup refetch={refetch}/>} />
             <Route path="/search" render={() => <Search refetch={refetch}/>} />
+            <Route path="/recipe/add" render={() => <AddRecipe />} />
+            <Route path="/profile" render={() => <Profile />} />
             <Redirect to="/" />
         </Switch>
     </Router>
