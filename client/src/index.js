@@ -6,6 +6,8 @@ import './index.css';
 import App from './components/App';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
+import Navbar from './components/Navbar';
+import Search from './components/Recipe/Search';
 import withSession from './components/withSession';
 
 import ApolloClient from 'apollo-boost';
@@ -33,10 +35,12 @@ const client = new ApolloClient({
 
 const Root = ({refetch}) => (
     <Router>
+        <Navbar />
         <Switch>
             <Route path="/" exact component={App} />
             <Route path="/login" render={() => <Login refetch={refetch}/>} />
             <Route path="/signup" render={() => <Signup refetch={refetch}/>} />
+            <Route path="/search" render={() => <Search refetch={refetch}/>} />
             <Redirect to="/" />
         </Switch>
     </Router>
