@@ -15,7 +15,7 @@ const App = () => (
 			if(error) return <div>Error</div>
 			console.log('data', data, loading, error);
 			return <ul>{data.getAllRecipes.map(recipe => 
-        <RecipeItem key={recipe._id} name={recipe.name} category={recipe.category}/>
+        <RecipeItem key={recipe._id} name={recipe.name} category={recipe.category} _id={recipe._id}/>
         )}</ul>
       }}
     </Query>
